@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongodb_1 = require("mongodb");
 class DbClient {
-    constructor(args) {
-        this.uri = args.url;
-        this.dbName = args.dbName;
+    constructor() {
+        this.uri = 'mongodb://classmongo.engr.oregonstate.edu';
+        this.dbName = 'cs290_hornee';
     }
     async connect() {
         const user = 'cs290_hornee';
         const password = 'cs290_hornee';
         try {
-            this.client = await mongodb_1.MongoClient.connect(this.uri, {
+            this.client = await mongodb_1.MongoClient.connect('mongodb://classmongo.engr.oregonstate.edu', {
                 auth: { user, password }
             });
             this.db = this.client.db(this.dbName);
