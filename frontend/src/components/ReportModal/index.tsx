@@ -67,4 +67,4 @@ export class ReportModal extends Component<ReportModalProps, ReportModalState> {
         );
       }
     }
-}
+
