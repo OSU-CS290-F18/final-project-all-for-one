@@ -5,6 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const routes_1 = require("./routes");
+const mongoose_1 = __importDefault(require("mongoose"));
+const Schema = mongoose_1.default.Schema;
+exports.Entries = new Schema({
+    Username: String,
+    Score: Number,
+    Date: Date,
+    Time: Number
+});
+exports.LeaderBoardModel = mongoose_1.default.model('LeaderBoard', exports.Entries);
 class Server {
     constructor() {
         this.creds = {
@@ -14,7 +23,7 @@ class Server {
             pass: 'cs290_hornee'
         };
         this.app = express_1.default();
-        console.log('WHY');
+        console.log('GUH');
         this.app.use((req, res, next) => {
             res.locals = this.creds;
             next();

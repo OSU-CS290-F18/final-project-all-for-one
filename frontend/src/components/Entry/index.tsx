@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
 export interface EntryProps {
-entryPlace: number,
-entryTime: Date,
-entryScore: number,
-entryUser: string
+    Place: number,
+    Username: string,
+    Score: number,
+    Date: Date,
+    Time: number
 }
 export interface EntryState {
     entryPlace: number,
-    entryTime: Date,
+    entryDate: Date,
+    entryTime: number,
     entryScore: number,
     entryUser: string
 }
@@ -16,22 +18,23 @@ export class Entry extends Component<EntryProps, EntryState> {
     constructor(props: EntryProps) {
         super(props);
         this.state = {
-            entryPlace: props.entryPlace,
-            entryTime: props.entryTime,
-            entryScore: props.entryScore,
-            entryUser: props.entryUser
+            entryPlace: props.Place,
+            entryDate: props.Date,
+            entryTime: props.Time,
+            entryScore: props.Score,
+            entryUser: props.Username
         }
     }
+
 render() {
     return(
-        <div id="board-entry-container">
-        <ul>
-            <li>{this.state.entryPlace}</li>
-            <li>{this.state.entryScore}</li>
-            <li>{this.state.entryUser}</li>
-            <li>{this.state.entryTime}</li>
-        </ul>
-        </div>
+       <tr>
+           <td>{this.state.entryPlace}</td>
+           <td>{this.state.entryUser}</td>
+           <td>{Math.floor(this.state.entryScore)}</td>
+           <td>{this.state.entryTime}</td>
+           <td>{this.state.entryDate}</td>
+       </tr>
     );
 }
 }

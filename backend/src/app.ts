@@ -1,7 +1,17 @@
 import e ,{Request, Response, Application} from  'express';
 import { router } from './routes';
 import { NextFunction } from 'connect';
+import mongoose from 'mongoose';
 
+const Schema = mongoose.Schema;
+export const Entries = new Schema({
+  Username: String,
+  Score: Number,
+  Date: Date,
+  Time: Number
+
+});
+export const LeaderBoardModel = mongoose.model('LeaderBoard', Entries);
 export interface ResponseContext extends Response {
   locals: Credentials;
 }
@@ -22,7 +32,7 @@ public creds: Credentials  = {
 constructor() {
 this.app = e();
 
-console.log('WHY');
+console.log('GUH');
   this.app.use( (req: Request, res: ResponseContext, next: NextFunction) => {
       res.locals = this.creds;
       next();
