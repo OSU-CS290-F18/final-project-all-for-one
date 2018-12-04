@@ -26,10 +26,19 @@ export class Entry extends Component<EntryProps, EntryState> {
         }
     }
 
+
+    getNumberWithOrdinal = (n: number) => {
+        var s=["th","st","nd","rd"],
+        v=n%100;
+        return n+(s[(v-20)%10]||s[v]||s[0]);
+     }
+
 render() {
+    
+    
     return(
        <tr>
-           <td>{this.state.entryPlace}</td>
+           <td>{this.getNumberWithOrdinal(this.state.entryPlace)}</td>
            <td>{this.state.entryUser}</td>
            <td>{Math.floor(this.state.entryScore)}</td>
            <td>{this.state.entryTime}</td>

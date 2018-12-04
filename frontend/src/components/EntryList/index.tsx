@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import fetch from 'node-fetch';
-import { ReactComponent } from '*.svg';
 import { Entry, EntryProps } from '../Entry';
 import { IEntry } from '../../models/IEntry';
+import ReactLoading from 'react-loading'
 
 export interface EntryListProps {
 
@@ -55,7 +55,6 @@ export class EntryList extends Component<EntryListProps, EntryListState> {
     }
     render() {
         
-  
             this.fetchEntries();
         
 
@@ -70,7 +69,7 @@ export class EntryList extends Component<EntryListProps, EntryListState> {
 }
 
 #leaderboard td, #leaderboard th {
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
     padding: 8px;
 }
 
@@ -78,16 +77,24 @@ export class EntryList extends Component<EntryListProps, EntryListState> {
 
 #leaderboard tr:hover {background-color: #ddd;}
 
+#heading {
+    background-image: linear-gradient(to bottom right, #2E9CCA , #29648A);
+}
 #leaderboard th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-image: linear-gradient(to bottom right, #2E9CCA , #29648A);
     color: white;
-}`}
+}
+
+#preloader {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+`}
 </style>
         <table id="leaderboard">
-            <tr>
+            <tr id="heading">
             <th>Place</th>
             <th>Name</th>
             <th>Score</th>
@@ -95,7 +102,8 @@ export class EntryList extends Component<EntryListProps, EntryListState> {
             <th>Date</th>
             </tr>
             {this.generateEntries()}
-        </table>
+            </table> 
+            {this.state.Entries.length > 0 ? '' : <div id="preloader"><ReactLoading type="spin" color="white" height={150} width={150} /> </div> }
         </div>);
     }
 }
