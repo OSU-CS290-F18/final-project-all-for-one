@@ -11,13 +11,24 @@
   background-color: #25274D;
   min-height: 100vh;
   display: flex;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color:  #AAABB8;
 }
-
+#banner {
+  color: #2E9CCA;
+  font-size: calc(70px + 2vmin);
+  text-shadow: #29648A  5px 0 20px;
+}
+#ld-head {
+  color: #2E9CCA;
+  font-size: calc(30px + 2vmin);
+  text-shadow: #29648A  5px 0 20px;
+  margin-bottom: 50px;
+}
 .App-link {
   color: #61dafb;
 }

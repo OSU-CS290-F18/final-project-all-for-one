@@ -100,6 +100,7 @@ export class EntryList extends Component<EntryListProps, EntryListState> {
             <th>Score</th>
             <th>Time</th>
             <th>Date</th>
+            <th>Report?</th>
             </tr>
             {this.generateEntries()}
             </table> 

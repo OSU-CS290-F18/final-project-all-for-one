@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {UserX} from '../../App';
+import { ReportModal } from '../ReportModal';
 export interface EntryProps {
     Place: number,
     Username: string,
@@ -13,6 +14,7 @@ export interface EntryState {
     entryTime: number,
     entryScore: number,
     entryUser: string
+    showModal: boolean;
 }
 export class Entry extends Component<EntryProps, EntryState> {
     constructor(props: EntryProps) {
@@ -22,10 +24,14 @@ export class Entry extends Component<EntryProps, EntryState> {
             entryDate: props.Date,
             entryTime: props.Time,
             entryScore: props.Score,
-            entryUser: props.Username
+            entryUser: props.Username,
+            showModal: false
         }
     }
 
+    reportUser = () => {
+        this.setState({showModal: true});
+    } 
 
     getNumberWithOrdinal = (n: number) => {
         var s=["th","st","nd","rd"],
@@ -43,6 +49,16 @@ render() {
            <td>{Math.floor(this.state.entryScore)}</td>
            <td>{this.state.entryTime}</td>
            <td>{this.state.entryDate}</td>
+           <td><button onClick={this.reportUser}>
+           <style>{`button {
+               border: none;
+               background: none;
+               color: #AAABB8;
+           }`}</style>
+           <UserX />
+           </button>
+           </td>
+           {this.state.showModal ? <ReportModal reportedEntry={this.props}/> : null}
        </tr>
     );
 }

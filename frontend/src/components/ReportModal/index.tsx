@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ReactDom from 'react-dom';
 import { EntryProps } from '../Entry';
+import fetch from 'node-fetch';
 
 
 const customStyles = {
@@ -11,13 +12,12 @@ const customStyles = {
       right                 : 'auto',
       bottom                : 'auto',
       marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+      transform             : 'translate(-50%, -50%)',
     }
   };
 
 export interface ReportModalProps {
     reportedEntry: EntryProps,
-    isOpen: boolean
 }
 
 export interface ReportModalState {
@@ -29,7 +29,7 @@ export class ReportModal extends Component<ReportModalProps, ReportModalState> {
     constructor(props: ReportModalProps) {
         super(props);
         this.state = {
-            isOpen: this.props.isOpen
+            isOpen: true
         }
     }
     openModal = () => {
@@ -41,11 +41,13 @@ export class ReportModal extends Component<ReportModalProps, ReportModalState> {
       closeModal = () => {
         this.setState({isOpen: false});
       }
-    
+    removeEntry = async () => {
+      await fetch(`http://localhost:8000/api/remEntry?user=${this.props.reportedEntry.Username}`, { method: 'POST', body: '' })
+    .then(res => alert(`Entries from ${this.props.reportedEntry.Username} have been removed.`));
+    }
       render() {
         return (
           <div>
-            <button onClick={this.openModal}>Open Modal</button>
             <Modal
               isOpen={this.state.isOpen}
               onRequestClose={this.closeModal}
@@ -54,13 +56,10 @@ export class ReportModal extends Component<ReportModalProps, ReportModalState> {
             >
     
               <button onClick={this.closeModal}>close</button>
-              <div>I am a modal</div>
+              <div>Are you sure you want to report and remove {this.props.reportedEntry.Username}'s score?</div>
               <form>
-                <input />
-                <button>tab navigation</button>
-                <button>stays</button>
-                <button>inside</button>
-                <button>the modal</button>
+                <button onClick={this.removeEntry}>Yeah</button>
+                <button>Nope</button>
               </form>
             </Modal>
           </div>

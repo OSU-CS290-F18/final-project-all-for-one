@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Award from 'react-feather/dist/icons/award';
+import userx from 'react-feather/dist/icons/user-x';
+
 import { EntryList } from './components/EntryList';
 
+export const UserX = userx;
 class App extends Component {
+  
   render() {
     return (
       <div className="App">
         <header className="App-header">
+        <div id="banner">MS-REDUX</div>
+        <div id="ld-head">Leaderboard</div>
 
           <div id="entrylist">
             <div id='header-container'><Award size={25} />   Top 10</div>
